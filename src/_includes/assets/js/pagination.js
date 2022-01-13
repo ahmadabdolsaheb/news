@@ -6,7 +6,9 @@
   const fetchNextPage = async () => {
     try {
       const nextTag = document.querySelector('link[rel="next"]');
-      const nextPageUrl = `${window.location.href}${nextPageNum}/`;
+      let href = window.location.href;
+      if (!href.endsWith('/')) href = `${href}/`
+      const nextPageUrl = `${href}${nextPageNum}/`;
       const res = await fetch(nextPageUrl);
 
       if (nextTag) nextTag.href = nextPageUrl;
